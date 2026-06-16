@@ -1,0 +1,29 @@
+{
+  "slug": "georgetown-library",
+  "title": "Georgetown Library",
+  "plateNo": "01",
+  "template": "model",
+  "motionProfile": "fluid",
+  "subtitle": "A civic reading room stitched into the Georgetown grid.",
+  "year": "2026",
+  "program": "Public Library",
+  "location": "Georgetown, Washington D.C.",
+  "studio": "Architecture 1",
+  "accent": "#d8743f",
+  "paper": "#100e0c",
+  "ink": "#f3ede2",
+  "muted": "rgba(243,237,226,0.62)",
+  "statement": "Georgetown Library negotiates a steep mid-block site by lifting its reading room above a porous, publicly accessible ground floor. A stepped section draws north light deep into the stacks while framing views back toward the canal. The long civic program is broken into three legible volumes that echo the rhythm of the surrounding row houses.",
+  "model": {
+    "src": "",
+    "poster": "../../assets/placeholders/model-poster.svg",
+    "alt": "Massing model of Georgetown Library"
+  },
+  "plates": [
+    { "src": "../../assets/placeholders/render.svg", "caption": "Approach from the street" },
+    { "src": "../../assets/placeholders/plan.svg", "caption": "Ground floor plan" },
+    { "src": "../../assets/placeholders/section.svg", "caption": "Longitudinal section" }
+  ],
+  "pdf": null,
+  "hasCustomJs": false
+}

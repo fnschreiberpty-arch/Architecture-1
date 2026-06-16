@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" role="img" aria-label="Placeholder elevation">
+  <rect width="1200" height="1000" fill="#f4f1e9"/>
+  <line x1="0" y1="900" x2="1200" y2="900" stroke="#1a1a1d" stroke-width="4"/>
+  <!-- narrow infill facade -->
+  <rect x="420" y="180" width="360" height="720" fill="none" stroke="#1a1a1d" stroke-width="4"/>
+  <!-- parapet -->
+  <rect x="408" y="168" width="384" height="18" fill="#9c4a25"/>
+  <!-- window grid -->
+  <g stroke="#1a1a1d" stroke-width="2" fill="#dfe6ea">
+    <rect x="460" y="240" width="120" height="120"/><rect x="620" y="240" width="120" height="120"/>
+    <rect x="460" y="420" width="120" height="120"/><rect x="620" y="420" width="120" height="120"/>
+    <rect x="460" y="600" width="120" height="120"/><rect x="620" y="600" width="120" height="120"/>
+  </g>
+  <!-- entry -->
+  <rect x="540" y="780" width="120" height="120" fill="#1a1a1d"/>
+  <g stroke="#b3ac9b" stroke-width="1">
+    <line x1="0" y1="940" x2="60" y2="900"/><line x1="120" y1="940" x2="180" y2="900"/>
+    <line x1="1020" y1="940" x2="1080" y2="900"/>
+  </g>
+  <text x="60" y="970" font-family="monospace" font-size="20" fill="#b8b1a2" letter-spacing="4">PLACEHOLDER · STREET ELEVATION · replace with your drawing</text>
+</svg>

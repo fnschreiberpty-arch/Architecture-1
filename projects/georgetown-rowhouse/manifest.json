@@ -1,0 +1,33 @@
+{
+  "slug": "georgetown-rowhouse",
+  "title": "Georgetown RowHouse",
+  "plateNo": "02",
+  "template": "section",
+  "motionProfile": "mechanical",
+  "subtitle": "A narrow infill dwelling read floor by floor.",
+  "year": "2026",
+  "program": "Single-family Infill",
+  "location": "Georgetown, Washington D.C.",
+  "studio": "Architecture 1",
+  "accent": "#6f93b0",
+  "paper": "#0c0e10",
+  "ink": "#eef1f3",
+  "muted": "rgba(238,241,243,0.6)",
+  "statement": "On a sixteen-foot-wide infill lot, the RowHouse organizes domestic life vertically around a top-lit stair. Living spaces open to a rear court at grade; private rooms stack above behind a restrained street face that completes the block. Read in section, the house becomes a sequence of compressions and releases tuned to the narrow site.",
+  "floors": [
+    { "level": "±0.00 · Ground", "name": "Entry & Living", "text": "A compressed entry releases into a double-height living space that opens fully to the rear court.", "img": "../../assets/placeholders/plan.svg" },
+    { "level": "+3.20 · Level 1", "name": "Kitchen & Dining", "text": "The middle floor bridges front and back, lit from the stair void above and a slot window to the street.", "img": "../../assets/placeholders/section.svg" },
+    { "level": "+6.40 · Level 2", "name": "Bedrooms", "text": "Private rooms tuck under the roof, each borrowing light from the top of the central stair.", "img": "../../assets/placeholders/elevation.svg" }
+  ],
+  "plates": [
+    { "src": "../../assets/placeholders/elevation.svg", "caption": "Street elevation" },
+    { "src": "../../assets/placeholders/render.svg", "caption": "Rear court view" }
+  ],
+  "pdf": null,
+  "model": {
+    "src": "",
+    "poster": "../../assets/placeholders/model-poster.svg",
+    "alt": "Massing model of the Georgetown RowHouse"
+  },
+  "hasCustomJs": false
+}

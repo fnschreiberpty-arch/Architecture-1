@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="3D model placeholder">
+  <defs>
+    <radialGradient id="stage" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#23242b"/><stop offset="1" stop-color="#0a0a0d"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#stage)"/>
+  <!-- wireframe massing -->
+  <g stroke="#9aa6c0" stroke-width="2" fill="none" opacity="0.85">
+    <polygon points="620,560 980,560 1080,480 720,480"/>
+    <polygon points="620,560 620,360 720,280 720,480"/>
+    <polygon points="980,560 980,360 1080,280 1080,480"/>
+    <polyline points="620,360 980,360 1080,280"/>
+    <line x1="720" y1="280" x2="1080" y2="280"/>
+    <line x1="620" y1="360" x2="620" y2="560"/>
+    <line x1="980" y1="360" x2="980" y2="560"/>
+  </g>
+  <ellipse cx="800" cy="610" rx="260" ry="40" fill="#000" opacity="0.4"/>
+  <text x="800" y="760" text-anchor="middle" font-family="monospace" font-size="30" fill="#d8743f" letter-spacing="6">3D MODEL</text>
+  <text x="800" y="800" text-anchor="middle" font-family="monospace" font-size="20" fill="#7e828c" letter-spacing="3">export SketchUp → .glb · drop into media/</text>
+</svg>

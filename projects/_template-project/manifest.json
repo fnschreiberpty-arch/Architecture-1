@@ -1,0 +1,26 @@
+{
+  "slug": "EDIT-ME-must-match-folder-name",
+  "title": "EDIT ME — Project Title",
+  "plateNo": "03",
+  "template": "section",
+  "motionProfile": "calm",
+  "subtitle": "One-line description of the project.",
+  "year": "2026",
+  "program": "EDIT ME",
+  "location": "EDIT ME",
+  "studio": "Architecture 1",
+  "accent": "#7d8a52",
+  "paper": "#0e0f0c",
+  "ink": "#f1f0e6",
+  "muted": "rgba(241,240,230,0.6)",
+  "statement": "Two or three sentences about the project's idea. This shows on the opening plate.",
+  "floors": [
+    { "level": "±0.00 · Ground", "name": "Floor name", "text": "What happens on this floor.", "img": "../../assets/placeholders/plan.svg" }
+  ],
+  "plates": [
+    { "src": "../../assets/placeholders/render.svg", "caption": "Caption for this image" }
+  ],
+  "pdf": null,
+  "model": { "src": "", "poster": "../../assets/placeholders/model-poster.svg", "alt": "Massing model" },
+  "hasCustomJs": false
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frank Schreiber — Selected Works</title>
+  <meta name="description" content="Architecture portfolio of Frank Schreiber — selected works presented as a navigable site model.">
+  <meta property="og:title" content="Frank Schreiber — Selected Works">
+  <meta property="og:description" content="An architecture portfolio you walk through: each project is its own world.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body class="hub">
+  <!-- 3D crit table (enhancement, layered over the flat plan below) -->
+  <div id="scene" aria-hidden="true"></div>
+  <div class="hub__labels" aria-hidden="true"></div>
+
+  <header class="hub__masthead">
+    <h1 class="hub__name">Frank Schreiber</h1>
+    <p class="hub__sub">Selected Works · Architecture</p>
+    <button class="index-btn" data-open-index style="pointer-events:auto;margin-top:1.2rem">Index ↗</button>
+  </header>
+
+  <p class="hub__legend">drag to orbit · move closer to enter</p>
+
+  <!-- FLAT SITE-PLAN — the canonical, crawlable, no-JS fallback -->
+  <main class="siteplan" id="index">
+    <p class="siteplan__hint">The work as a plan — select a project to enter</p>
+
+    <a class="plan-card" href="projects/georgetown-library/index.html">
+      <span class="plan-card__no">01</span>
+      <span>
+        <span class="plan-card__title">Georgetown Library</span>
+        <span class="plan-card__meta">Public · Library — 2026</span>
+      </span>
+      <span class="plan-card__go">Enter →</span>
+    </a>
+
+    <a class="plan-card" href="projects/georgetown-rowhouse/index.html">
+      <span class="plan-card__no">02</span>
+      <span>
+        <span class="plan-card__title">Georgetown RowHouse</span>
+        <span class="plan-card__meta">Residential · Infill — 2026</span>
+      </span>
+      <span class="plan-card__go">Enter →</span>
+    </a>
+  </main>
+
+  <div class="veil" aria-hidden="true"></div>
+
+  <!-- gsap (global) must load before the deferred module -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script type="module" src="assets/js/hub.js"></script>
+</body>
+</html>

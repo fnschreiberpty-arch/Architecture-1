@@ -1,0 +1,32 @@
+{
+  "site": {
+    "author": "Frank Schreiber",
+    "title": "Selected Works",
+    "tagline": "Architecture portfolio",
+    "year": "2026"
+  },
+  "projects": [
+    {
+      "slug": "georgetown-library",
+      "title": "Georgetown Library",
+      "year": "2026",
+      "type": "Public · Library",
+      "template": "model",
+      "accent": "#d8743f",
+      "blurb": "A civic reading room stitched into the Georgetown grid.",
+      "silhouette": { "kind": "library" },
+      "x": -2.4
+    },
+    {
+      "slug": "georgetown-rowhouse",
+      "title": "Georgetown RowHouse",
+      "year": "2026",
+      "type": "Residential · Infill",
+      "template": "section",
+      "accent": "#6f93b0",
+      "blurb": "A narrow infill dwelling read floor by floor.",
+      "silhouette": { "kind": "rowhouse" },
+      "x": 2.4
+    }
+  ]
+}

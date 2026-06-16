@@ -1,0 +1,445 @@
+/* ============================================================
+   SITE MODEL — base stylesheet
+   Design tokens + hub (crit table) + shared chrome + world base.
+   Per-project worlds override the --paper/--ink/--accent tokens
+   via an inline style on <body data-template="...">.
+   ============================================================ */
+
+:root {
+  /* Hub / connective tissue — deliberately restrained */
+  --bg: #131419;
+  --bg-2: #1b1d24;
+  --fog: #0e0f13;
+  --ink: #f2efe8;
+  --ink-dim: #9a9aa4;
+  --line: rgba(242, 239, 232, 0.14);
+  --accent: #d8743f;
+
+  --font-display: "Inter Tight", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --maxw: 1400px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.7s;
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.mono { font-family: var(--font-mono); }
+.u-hidden { display: none !important; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+   HUB — the crit review table
+   ============================================================ */
+.hub {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 18%, var(--bg-2) 0%, var(--bg) 45%, var(--fog) 100%);
+}
+
+/* 3D canvas layered OVER the flat site-plan once WebGL is ready */
+#scene {
+  position: fixed; inset: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1.1s ease;
+  pointer-events: none;
+}
+body.has-3d #scene { opacity: 1; pointer-events: auto; }
+
+/* etched name + intro, always present (over canvas) */
+.hub__masthead {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: clamp(2.4rem, 7vh, 6rem) 1.5rem 0;
+  pointer-events: none;
+}
+.hub__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 4.4vw, 3.1rem);
+  margin: 0;
+  color: var(--ink);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+}
+.hub__sub {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin: 0.85rem 0 0;
+}
+.hub__legend {
+  position: fixed;
+  left: 50%; bottom: 1.6rem;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease 0.6s;
+}
+body.has-3d .hub__legend { opacity: 1; }
+
+/* floating HTML labels projected from 3D model positions */
+.hub__labels { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+.hub-label {
+  position: absolute;
+  transform: translate(-50%, -120%);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  background: rgba(10,11,14,0.62);
+  border: 1px solid var(--line);
+  padding: 0.32rem 0.6rem;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s var(--ease);
+}
+.hub-label.is-on { opacity: 1; transform: translate(-50%, -150%); }
+.hub-label small { color: var(--accent); }
+
+/* ---------- flat site-plan fallback (default; hidden when has-3d) ---------- */
+.siteplan {
+  position: relative;
+  z-index: 3;
+  max-width: 760px;
+  margin: clamp(2rem, 6vh, 4rem) auto;
+  padding: 0 1.5rem 5rem;
+}
+body.has-3d .siteplan { display: none; }
+
+.siteplan__hint {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+.plan-card {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 1.1rem;
+  align-items: center;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.015);
+  margin-bottom: 0.9rem;
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.plan-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 65%, var(--line));
+  background: rgba(255,255,255,0.04);
+  transform: translateX(4px);
+}
+.plan-card__no {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+.plan-card__title {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.plan-card__meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-top: 0.2rem;
+}
+.plan-card__go {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+/* ============================================================
+   SHARED CHROME — top bar, Index button, command palette, transition veil
+   ============================================================ */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 40;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem clamp(1rem, 3vw, 2rem);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  mix-blend-mode: difference;        /* stays legible over any world */
+  color: #fff;
+}
+.topbar a, .topbar button { color: inherit; }
+.topbar__crumb { display: flex; align-items: center; gap: 0.6rem; }
+.topbar__crumb .sep { opacity: 0.5; }
+.topbar__nav { display: flex; align-items: center; gap: 1.1rem; }
+.topbar__nav .arrow { font-size: 0.95rem; }
+.topbar__nav button[disabled] { opacity: 0.3; cursor: default; }
+
+/* Index button (always available) */
+.index-btn { border: 1px solid currentColor; border-radius: 999px; padding: 0.3rem 0.8rem; }
+
+/* command palette */
+.palette {
+  position: fixed; inset: 0; z-index: 60;
+  display: none;
+  align-items: flex-start; justify-content: center;
+  background: rgba(8,9,12,0.6);
+  backdrop-filter: blur(4px);
+  padding-top: 14vh;
+}
+.palette.is-open { display: flex; }
+.palette__box {
+  width: min(540px, 92vw);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.palette__input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+.palette__input::placeholder { color: var(--ink-dim); }
+.palette__list { list-style: none; margin: 0; padding: 0.4rem; max-height: 50vh; overflow: auto; }
+.palette__item {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding: 0.7rem 0.9rem; border-radius: 5px;
+  font-family: var(--font-body);
+}
+.palette__item small { font-family: var(--font-mono); color: var(--ink-dim); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.palette__item.is-active, .palette__item:hover { background: rgba(255,255,255,0.06); }
+
+/* threshold-transition veil (hub → world) */
+.veil {
+  position: fixed; inset: 0; z-index: 80;
+  background: var(--fog);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.55s ease;
+}
+.veil.is-on { opacity: 1; pointer-events: auto; }
+
+/* ============================================================
+   WORLD BASE — shared shell for every project page.
+   Worlds set --paper/--ink/--accent inline; this styles the
+   common scaffolding (intro plate, plates, captions, footer).
+   ============================================================ */
+body.world {
+  --paper: #0d0e12;
+  --ink: #f1ece3;
+  --accent: #d8743f;
+  --muted: rgba(241,236,227,0.55);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.world__intro {
+  min-height: 92svh;
+  display: grid;
+  align-content: center;
+  gap: 1.4rem;
+  padding: 6rem clamp(1.2rem, 6vw, 6rem) 3rem;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.world__plate-no {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.world__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 8vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.world__subtitle { font-size: clamp(1.05rem, 2.4vw, 1.5rem); color: var(--muted); max-width: 46ch; margin: 0; }
+.world__meta {
+  display: flex; flex-wrap: wrap; gap: 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.6rem;
+}
+.world__meta b { color: var(--ink); font-weight: 400; }
+.world__statement { max-width: 60ch; font-size: 1.08rem; color: var(--ink); }
+
+/* reveal-on-scroll (driven by kernel IntersectionObserver) */
+[data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+[data-reveal].is-visible { opacity: 1; transform: none; }
+
+/* numbered plate + caption (PLATE-grade rigor, shared by all worlds) */
+.plate { position: relative; margin: 0 auto; max-width: var(--maxw); padding: 0 clamp(1.2rem, 6vw, 6rem); }
+.plate figure { margin: 0; }
+.plate img { width: 100%; height: auto; border: 1px solid var(--line); background: #fff; }
+.plate figcaption {
+  display: flex; gap: 1rem; align-items: baseline;
+  margin-top: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.plate figcaption .n { color: var(--accent); }
+
+.world__footer {
+  max-width: var(--maxw); margin: 5rem auto 0; padding: 3rem clamp(1.2rem, 6vw, 6rem) 6rem;
+  border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem;
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.world__footer a { color: var(--ink); border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+
+/* ============================================================
+   COMPONENT — model block (model-viewer)
+   ============================================================ */
+.modelblock { position: relative; max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.2rem, 6vw, 6rem); }
+.modelblock__stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: radial-gradient(80% 80% at 50% 40%, #1a1b20 0%, #0a0a0d 100%);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.modelblock model-viewer { width: 100%; height: 100%; --poster-color: transparent; }
+.modelblock__poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+.modelblock__note {
+  position: absolute; inset: auto 0 0 0; padding: 1rem 1.2rem;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+  color: var(--ink); background: linear-gradient(transparent, rgba(0,0,0,0.7));
+}
+.modelblock__note b { color: var(--accent); }
+
+/* ============================================================
+   COMPONENT — light table (image grid) + lightbox + loupe
+   ============================================================ */
+.lighttable {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.2rem, 6vw, 6rem);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem;
+}
+.lighttable__cell { position: relative; cursor: zoom-in; border: 1px solid var(--line); background: #fff; overflow: hidden; }
+.lighttable__cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.lighttable__cell:hover img { transform: scale(1.03); }
+.lighttable__cell figcaption {
+  position: absolute; left: 0; bottom: 0; right: 0;
+  padding: 0.7rem 0.8rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em;
+  color: #fff; background: linear-gradient(transparent, rgba(0,0,0,0.65)); text-transform: uppercase;
+}
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 70; display: none;
+  align-items: center; justify-content: center;
+  background: rgba(6,6,9,0.94); padding: 3vw;
+}
+.lightbox.is-open { display: flex; }
+.lightbox__img { max-width: 92vw; max-height: 88vh; object-fit: contain; cursor: crosshair; }
+.lightbox__loupe {
+  position: fixed; width: 220px; height: 220px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5); pointer-events: none; display: none;
+  background-repeat: no-repeat; box-shadow: 0 10px 40px rgba(0,0,0,0.6); z-index: 71;
+}
+.lightbox__close { position: fixed; top: 1.2rem; right: 1.4rem; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.16em; color: #fff; text-transform: uppercase; }
+
+/* ============================================================
+   COMPONENT — PDF plan-room
+   ============================================================ */
+.planroom { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.2rem, 6vw, 6rem); }
+.planroom__frame {
+  position: relative; border: 1px solid var(--line); background: #525659;
+  aspect-ratio: 4 / 3; overflow: hidden;
+}
+.planroom__frame iframe { width: 100%; height: 100%; border: 0; }
+.planroom__bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.8rem 0; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.planroom__dl { color: var(--ink); border: 1px solid var(--accent); border-radius: 999px; padding: 0.4rem 0.9rem; }
+.planroom__empty {
+  display: grid; place-content: center; gap: 0.6rem; text-align: center; height: 100%;
+  color: #e7e3da; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; padding: 2rem;
+}
+.planroom__empty b { color: var(--accent); }
+
+/* ============================================================
+   SECTION-WORLD specifics (scroll down through floors)
+   ============================================================ */
+.floors { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.2rem, 6vw, 6rem); }
+.floor {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center; min-height: 80svh; padding: 4rem 0; border-top: 1px solid var(--line);
+}
+.floor:nth-child(even) .floor__media { order: 2; }
+.floor__level { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); }
+.floor__name { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 600; margin: 0.4rem 0 1rem; }
+.floor__text { color: var(--muted); max-width: 42ch; }
+.floor__media img { width: 100%; border: 1px solid var(--line); background: #fff; }
+@media (max-width: 760px) {
+  .floor { grid-template-columns: 1fr; min-height: 0; }
+  .floor:nth-child(even) .floor__media { order: 0; }
+}
+
+/* section spacing rhythm between stacked plates/components */
+.world > section { margin-top: clamp(3rem, 9vh, 7rem); }
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.001s !important; animation-duration: 0.001s !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .lighttable__cell:hover img { transform: none; }
+}

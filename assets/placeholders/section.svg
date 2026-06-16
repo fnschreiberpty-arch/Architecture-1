@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Placeholder building section">
+  <rect width="1600" height="1000" fill="#f4f1e9"/>
+  <!-- sky hatch -->
+  <g stroke="#d9d3c5" stroke-width="1">
+    <line x1="200" y1="120" x2="260" y2="60"/><line x1="320" y1="120" x2="380" y2="60"/>
+    <line x1="440" y1="120" x2="500" y2="60"/><line x1="560" y1="120" x2="620" y2="60"/>
+  </g>
+  <!-- ground -->
+  <rect x="0" y="860" width="1600" height="140" fill="#e4ddcb"/>
+  <line x1="0" y1="860" x2="1600" y2="860" stroke="#1a1a1d" stroke-width="4"/>
+  <g stroke="#b3ac9b" stroke-width="1">
+    <line x1="0" y1="900" x2="60" y2="860"/><line x1="120" y1="900" x2="180" y2="860"/>
+    <line x1="240" y1="900" x2="300" y2="860"/><line x1="1360" y1="900" x2="1420" y2="860"/>
+  </g>
+  <!-- cut floor slabs (poché) -->
+  <g fill="#1a1a1d">
+    <rect x="300" y="640" width="1000" height="16"/>
+    <rect x="300" y="440" width="1000" height="16"/>
+    <rect x="300" y="240" width="1000" height="16"/>
+    <rect x="300" y="240" width="16" height="416"/>
+    <rect x="1284" y="240" width="16" height="416"/>
+  </g>
+  <!-- roof -->
+  <path d="M280 240 L800 150 L1320 240 Z" fill="none" stroke="#1a1a1d" stroke-width="4"/>
+  <!-- interior lines -->
+  <g stroke="#6f6a5e" stroke-width="2" fill="none">
+    <rect x="360" y="660" width="180" height="180"/>
+    <rect x="620" y="660" width="240" height="180"/>
+    <rect x="360" y="460" width="500" height="170"/>
+  </g>
+  <!-- scale figures -->
+  <g fill="#9c4a25">
+    <circle cx="420" cy="790" r="10"/><rect x="414" y="800" width="12" height="40"/>
+    <circle cx="700" cy="790" r="10"/><rect x="694" y="800" width="12" height="40"/>
+  </g>
+  <!-- level tags -->
+  <g font-family="monospace" font-size="22" fill="#9c4a25">
+    <text x="1320" y="850">±0.00 GROUND</text>
+    <text x="1320" y="650">+3.20 L1</text>
+    <text x="1320" y="450">+6.40 L2</text>
+  </g>
+  <text x="60" y="950" font-family="monospace" font-size="22" fill="#b8b1a2" letter-spacing="4">PLACEHOLDER · LONGITUDINAL SECTION · replace with your drawing</text>
+</svg>
