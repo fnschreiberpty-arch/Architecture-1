@@ -39,6 +39,9 @@ function ensureLightbox() {
   return lb;
 }
 
+/* open the shared lightbox directly (used by full-width plates too) */
+export function openLightbox(src, alt) { ensureLightbox().openImg(src, alt); }
+
 export function mountLightTable(plates) {
   const sec = document.createElement("section");
   sec.className = "lighttable";

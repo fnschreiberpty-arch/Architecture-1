@@ -9,7 +9,8 @@ export function mountModel(model) {
     ? `<div class="modelblock__stage">
          <model-viewer src="${model.src}" poster="${model.poster || ""}"
            alt="${model.alt || "3D model"}" camera-controls auto-rotate ar
-           shadow-intensity="1" exposure="1.05" loading="lazy" reveal="interaction"></model-viewer>
+           environment-image="neutral" shadow-intensity="1" exposure="1.05"
+           loading="lazy" reveal="auto"></model-viewer>
        </div>`
     : `<div class="modelblock__stage">
          ${model && model.poster ? `<img class="modelblock__poster" src="${model.poster}" alt="${model.alt || ""}">` : ""}

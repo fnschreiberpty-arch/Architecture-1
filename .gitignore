@@ -1,0 +1,19 @@
+# Raw design-source & print-resolution files.
+# These get converted to lightweight web assets (.glb, .png/.jpg, compressed PDF)
+# which ARE committed — the heavy originals stay local only.
+*.skp
+*.dae
+*.obj
+*.mtl
+*.fbx
+*.3ds
+*.dwg
+*.max
+
+# Big raw PDFs: commit only compressed web derivatives (suffix -web.pdf)
+*.pdf
+!*-web.pdf
+
+# OS cruft
+Thumbs.db
+.DS_Store

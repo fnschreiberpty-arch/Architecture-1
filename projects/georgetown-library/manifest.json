@@ -15,15 +15,15 @@
   "muted": "rgba(243,237,226,0.62)",
   "statement": "Georgetown Library negotiates a steep mid-block site by lifting its reading room above a porous, publicly accessible ground floor. A stepped section draws north light deep into the stacks while framing views back toward the canal. The long civic program is broken into three legible volumes that echo the rhythm of the surrounding row houses.",
   "model": {
-    "src": "",
-    "poster": "../../assets/placeholders/model-poster.svg",
-    "alt": "Massing model of Georgetown Library"
+    "src": "media/library.glb",
+    "poster": "",
+    "alt": "3D model of Georgetown Library — drag to orbit"
   },
-  "plates": [
-    { "src": "../../assets/placeholders/render.svg", "caption": "Approach from the street" },
-    { "src": "../../assets/placeholders/plan.svg", "caption": "Ground floor plan" },
-    { "src": "../../assets/placeholders/section.svg", "caption": "Longitudinal section" }
+  "boards": [
+    { "src": "media/library-renders.jpg", "caption": "Presentation board — renders & approach" },
+    { "src": "media/library-floorplans.jpg", "caption": "Presentation board — plans & section" }
   ],
-  "pdf": null,
+  "plates": [],
+  "pdf": { "src": "media/library-boards-web.pdf", "label": "Presentation boards" },
   "hasCustomJs": false
 }

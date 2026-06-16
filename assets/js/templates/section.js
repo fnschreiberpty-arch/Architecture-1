@@ -1,6 +1,6 @@
 /* SECTION world — you scroll DOWN through the building floor by floor.
    Best for vertically-organized projects (rowhouses, towers). */
-import { intro, footer } from "./parts.js";
+import { intro, footer, fullPlate } from "./parts.js";
 import { mountLightTable } from "../components/lighttable.js";
 import { mountPlanroom } from "../components/planroom.js";
 import { mountModel } from "../components/modelblock.js";
@@ -27,6 +27,7 @@ export async function render(root, manifest, base) {
     root.appendChild(wrap);
   }
 
+  (manifest.boards || []).forEach((b, i) => root.appendChild(fullPlate(b, i + 1)));
   if (manifest.plates?.length) root.appendChild(mountLightTable(manifest.plates));
   if ("pdf" in manifest) root.appendChild(mountPlanroom(manifest.pdf));
   if (manifest.model) root.appendChild(mountModel(manifest.model));

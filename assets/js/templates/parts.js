@@ -1,5 +1,7 @@
 /* shared world parts — intro plate + footer, used by every template
    so all worlds keep PLATE-grade caption/plate-number rigor. */
+import { openLightbox } from "../components/lighttable.js";
+
 export function intro(manifest) {
   const sec = document.createElement("section");
   sec.className = "world__intro";
@@ -23,4 +25,20 @@ export function footer(base) {
   f.innerHTML = `<span>Frank Schreiber — Selected Works</span>
     <span><a href="${base}index.html">← Back to the table</a></span>`;
   return f;
+}
+
+/* full-bleed numbered plate (presentation boards / hero drawings),
+   click to inspect in the lightbox with a magnifier loupe. */
+export function fullPlate(item, i) {
+  const sec = document.createElement("section");
+  sec.className = "plate";
+  sec.dataset.reveal = "";
+  sec.innerHTML = `<figure>
+    <img src="${item.src}" alt="${item.caption || ""}" loading="lazy">
+    <figcaption><span class="n">${String(i).padStart(2, "0")}</span><span>${item.caption || ""}</span></figcaption>
+  </figure>`;
+  const img = sec.querySelector("img");
+  img.style.cursor = "zoom-in";
+  img.addEventListener("click", () => openLightbox(item.src, item.caption));
+  return sec;
 }
